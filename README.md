@@ -14,3 +14,10 @@ javac Main.java
 
 # Run
 java Main
+
+## Future Enhancements
+- Error handling for invalid inputs
+- Memory function to store/recall values
+- Calculation history
+- Additional scientific operations
+- Continuous calculations (using the previous result as input)
