@@ -20,4 +20,4 @@ java Main
 - Memory function to store/recall values
 - Calculation history
 - Additional scientific operations
-- Continuous calculations (using the previous result as input)
+- Continuous calculations (using the previous result as input
