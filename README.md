@@ -1,21 +1,20 @@
 # Java CLI Calculator
 
-A simple command-line calculator built in Java as I refresh my programming skills and build my portfolio.
+A feature-rich command-line calculator built in Java. This project marks my return to programming and demonstrates comprehensive Java skills.
 
-## Features
-- Basic arithmetic operations (Addition, Subtraction, Multiplication, Division)
-- User-friendly menu interface
-- Continuous operation until user chooses to quit
-- Continuous calculations (using the previous result as input)
-- Calculation history
+## 🚀 Features
+- **Basic Operations**: Addition, Subtraction, Multiplication, Division
+- **Scientific Operations**: Power (x^y), Root (y√x)
+- **Memory Function**: Store/recall values with memory persistence
+- **Calculation History**: View complete history of all operations
+- **Continuous Calculations**: Use previous results as new inputs
+- **Robust Error Handling**: Invalid input protection
+- **User-Friendly Interface**: Clean menu system
 
-## Future Enhancements
-- Error handling for invalid inputs
-- Memory function to store/recall values
-- Additional scientific operations
+## 🎯 Project Status
+**✅ COMPLETE** - All planned features implemented and tested
 
-
-## How to Run
+## 📦 How to Run
 ```bash
 # Compile
 javac Main.java

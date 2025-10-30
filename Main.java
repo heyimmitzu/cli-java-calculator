@@ -18,7 +18,7 @@ public class Main {
         System.out.println("-----------------------------");
         while (running) {
             operationMenu();
-            int operation = scanner.nextInt();
+            int operation = getValidMenuInput();
             switch (operation) {
                 case 1:
                     performAddition();
@@ -32,16 +32,43 @@ public class Main {
                 case 4:
                     performDivision();
                     break;
-                case 5:
+                case 7:
                     clearMemory();
                     break;
-                case 6:
+                case 8:
                     renderCalculationHistory();
                     break;
-                case 7:
+                case 5:
+                    performPower();
+                    break;
+                case 6:
+                    performRoot();
+                    break;
+                case 9:
                     running = quitApp();
                     break;
             }
+        }
+    }
+
+    private double getValidNumberInput() {
+        while (true) {
+            if (scanner.hasNextDouble()) {
+                return scanner.nextDouble();
+            } else {
+                scanner.next();
+                System.out.println("Please enter a valid number!");
+            }
+        }
+    }
+
+    private int getValidMenuInput() {
+        while (true) {
+            if (scanner.hasNextInt()) {
+                int input = scanner.nextInt();
+                if (input >= 1 && input <= 9) return input;
+            }
+            System.out.println("Please enter a valid number between 1 and 9!");
         }
     }
 
@@ -54,7 +81,7 @@ public class Main {
     }
 
     private boolean quitApp() {
-        System.out.println("Bye, have a splendid day");
+        System.out.println("Bye, have a splendid day!");
         return false;
     }
 
@@ -71,9 +98,11 @@ public class Main {
         System.out.println("2. Subtraction");
         System.out.println("3. Multiplication");
         System.out.println("4. Division");
-        System.out.println("5. Clear memory value");
-        System.out.println("6. Show calculation history");
-        System.out.println("7. Quit application");
+        System.out.println("5. Calculate Power");
+        System.out.println("6. Calculate Root");
+        System.out.println("7. Clear memory value");
+        System.out.println("8. Show calculation history");
+        System.out.println("9. Quit application");
         if (isMemory) System.out.println("Memory value: " + memory);
         System.out.println("-----------------------------");
     }
@@ -87,7 +116,31 @@ public class Main {
             if (scanner.next().equalsIgnoreCase("y")) return memory;
         }
         System.out.println(prompt);
-        return scanner.nextDouble();
+        return getValidNumberInput();
+    }
+
+    private void performPower() {
+        System.out.println("X ^ Y = ");
+        x = getInputWithMemory("Chose X: ");
+        y = getInputWithMemory("Chose Y: ");
+        total = Math.pow(x, y);
+        memory = total;
+        isMemory = true;
+        calculationRecord.add(new CalculationRecord("+", x, y, total));
+        System.out.println(x + " ^ " + y + " = " + total);
+        System.out.println("-----------------------------");
+    }
+
+    private void performRoot() {
+        System.out.println("X ^ (1/Y) = ");
+        x = getInputWithMemory("Chose X: ");
+        y = getInputWithMemory("Chose Y: ");
+        total = Math.pow(x, (1 / y));
+        memory = total;
+        isMemory = true;
+        calculationRecord.add(new CalculationRecord("+", x, y, total));
+        System.out.println(x + " ^ " + "(1/" + y + ") = " + total);
+        System.out.println("-----------------------------");
     }
 
     private void performAddition() {
