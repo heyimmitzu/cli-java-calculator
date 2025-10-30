@@ -7,11 +7,11 @@ A simple command-line calculator built in Java as I refresh my programming skill
 - User-friendly menu interface
 - Continuous operation until user chooses to quit
 - Continuous calculations (using the previous result as input)
+- Calculation history
 
 ## Future Enhancements
 - Error handling for invalid inputs
 - Memory function to store/recall values
-- Calculation history
 - Additional scientific operations
 
 
