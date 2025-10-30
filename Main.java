@@ -2,27 +2,20 @@ import java.util.Scanner;
 
 public class Main {
 
-    private double memory = 0;
+    private Double memory = null;
     private boolean isMemory = false;
     private double x = 0;
     private double y = 0;
+    private double total = 0;
     Scanner scanner = new Scanner(System.in);
 
     public void main() {
         boolean running = true;
-
+        System.out.println("-----------------------------");
         System.out.println("Calculator made by heyimmitzu");
         System.out.println("-----------------------------");
         while (running) {
-            System.out.println("Chose an operation:");
-            System.out.println("1. Addition");
-            System.out.println("2. Subtraction");
-            System.out.println("3. Multiplication");
-            System.out.println("4. Division");
-            System.out.println("5. Clear memory value");
-            System.out.println("6. Quit application");
-            if (isMemory) System.out.println("Memory value: " + memory);
-            System.out.println("-----------------------------");
+            operationMenu();
             int operation = scanner.nextInt();
             switch (operation) {
                 case 1:
@@ -38,38 +31,56 @@ public class Main {
                     performDivision();
                     break;
                 case 5:
-                    memory = 0;
+                    clearMemory();
                     break;
                 case 6:
-                    running = false;
+                    running = quitApp();
                     break;
             }
         }
     }
 
+    private boolean quitApp() {
+        System.out.println("Bye, have a splendid day");
+        return false;
+    }
+
+    private void clearMemory() {
+        memory = null;
+        isMemory = false;
+        System.out.println("Memory has been cleared!");
+        System.out.println("-----------------------------");
+    }
+
+    private void operationMenu() {
+        System.out.println("Chose an operation:");
+        System.out.println("1. Addition");
+        System.out.println("2. Subtraction");
+        System.out.println("3. Multiplication");
+        System.out.println("4. Division");
+        System.out.println("5. Clear memory value");
+        System.out.println("6. Quit application");
+        if (isMemory) System.out.println("Memory value: " + memory);
+        System.out.println("-----------------------------");
+    }
+
+    private double getInputWithMemory(String prompt) {
+        if (isMemory && memory != null) {
+            System.out.println(prompt);
+            System.out.println(
+                "Use memory value (" + memory + ") for " + prompt + "? (y/n)"
+            );
+            if (scanner.next().equalsIgnoreCase("y")) return memory;
+        }
+        System.out.println(prompt);
+        return scanner.nextDouble();
+    }
+
     private void performAddition() {
         System.out.println("X + Y = ");
-        System.out.println("Chose X: ");
-        if (isMemory) {
-            System.out.println("Use memory value for X? (y/n)");
-            String memoryX = scanner.next();
-            if (memoryX.equals("y")) x = memory;
-            else {
-                System.out.println("Enter X: ");
-                x = scanner.nextDouble();
-            }
-        } else x = scanner.nextDouble();
-        System.out.println("Chose Y: ");
-        if (isMemory) {
-            System.out.println("Use memory value for Y? (y/n)");
-            String memoryY = scanner.next();
-            if (memoryY.equals("y")) y = memory;
-            else {
-                System.out.println("Enter Y: ");
-                y = scanner.nextDouble();
-            }
-        } else y = scanner.nextDouble();
-        double total = x + y;
+        x = getInputWithMemory("Chose X: ");
+        y = getInputWithMemory("Chose Y: ");
+        total = x + y;
         memory = total;
         isMemory = true;
         System.out.println(x + " + " + y + " = " + total);
@@ -78,11 +89,9 @@ public class Main {
 
     private void performSubtraction() {
         System.out.println("X - Y = ");
-        System.out.println("Chose X: ");
-        double x = scanner.nextDouble();
-        System.out.println("Chose Y: ");
-        double y = scanner.nextDouble();
-        double total = x - y;
+        x = getInputWithMemory("Chose X: ");
+        y = getInputWithMemory("Chose Y: ");
+        total = x - y;
         memory = total;
         isMemory = true;
         System.out.println(x + " - " + y + " = " + total);
@@ -91,11 +100,9 @@ public class Main {
 
     private void performMultiplication() {
         System.out.println("X * Y = ");
-        System.out.println("Chose X: ");
-        double x = scanner.nextDouble();
-        System.out.println("Chose Y: ");
-        double y = scanner.nextDouble();
-        double total = x * y;
+        x = getInputWithMemory("Chose X: ");
+        y = getInputWithMemory("Chose Y: ");
+        total = x * y;
         memory = total;
         isMemory = true;
         System.out.println(x + " * " + y + " = " + total);
@@ -104,11 +111,9 @@ public class Main {
 
     private void performDivision() {
         System.out.println("X / Y = ");
-        System.out.println("Chose X: ");
-        double x = scanner.nextDouble();
-        System.out.println("Chose Y: ");
-        double y = scanner.nextDouble();
-        double total = x / y;
+        x = getInputWithMemory("Chose X: ");
+        y = getInputWithMemory("Chose Y: ");
+        total = x / y;
         memory = total;
         isMemory = true;
         System.out.println(x + " / " + y + " = " + total);
