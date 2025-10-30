@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -7,7 +8,8 @@ public class Main {
     private double x = 0;
     private double y = 0;
     private double total = 0;
-    Scanner scanner = new Scanner(System.in);
+    private ArrayList<CalculationRecord> calculationRecord = new ArrayList<>();
+    private Scanner scanner = new Scanner(System.in);
 
     public void main() {
         boolean running = true;
@@ -34,10 +36,21 @@ public class Main {
                     clearMemory();
                     break;
                 case 6:
+                    renderCalculationHistory();
+                    break;
+                case 7:
                     running = quitApp();
                     break;
             }
         }
+    }
+
+    private void renderCalculationHistory() {
+        System.out.println("-----------------------------");
+        System.out.println("Calculation History: ");
+        for (CalculationRecord record : calculationRecord)
+            record.printOperation();
+        System.out.println("-----------------------------");
     }
 
     private boolean quitApp() {
@@ -59,7 +72,8 @@ public class Main {
         System.out.println("3. Multiplication");
         System.out.println("4. Division");
         System.out.println("5. Clear memory value");
-        System.out.println("6. Quit application");
+        System.out.println("6. Show calculation history");
+        System.out.println("7. Quit application");
         if (isMemory) System.out.println("Memory value: " + memory);
         System.out.println("-----------------------------");
     }
@@ -83,6 +97,7 @@ public class Main {
         total = x + y;
         memory = total;
         isMemory = true;
+        calculationRecord.add(new CalculationRecord("+", x, y, total));
         System.out.println(x + " + " + y + " = " + total);
         System.out.println("-----------------------------");
     }
@@ -94,6 +109,7 @@ public class Main {
         total = x - y;
         memory = total;
         isMemory = true;
+        calculationRecord.add(new CalculationRecord("-", x, y, total));
         System.out.println(x + " - " + y + " = " + total);
         System.out.println("-----------------------------");
     }
@@ -105,6 +121,7 @@ public class Main {
         total = x * y;
         memory = total;
         isMemory = true;
+        calculationRecord.add(new CalculationRecord("*", x, y, total));
         System.out.println(x + " * " + y + " = " + total);
         System.out.println("-----------------------------");
     }
@@ -116,6 +133,7 @@ public class Main {
         total = x / y;
         memory = total;
         isMemory = true;
+        calculationRecord.add(new CalculationRecord("/", x, y, total));
         System.out.println(x + " / " + y + " = " + total);
         System.out.println("-----------------------------");
     }

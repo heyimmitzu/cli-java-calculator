@@ -6,13 +6,14 @@ A simple command-line calculator built in Java as I refresh my programming skill
 - Basic arithmetic operations (Addition, Subtraction, Multiplication, Division)
 - User-friendly menu interface
 - Continuous operation until user chooses to quit
+- Continuous calculations (using the previous result as input)
 
 ## Future Enhancements
 - Error handling for invalid inputs
 - Memory function to store/recall values
 - Calculation history
 - Additional scientific operations
-- Continuous calculations (using the previous result as input)
+
 
 ## How to Run
 ```bash
@@ -21,5 +22,3 @@ javac Main.java
 
 # Run
 java Main
-
-
